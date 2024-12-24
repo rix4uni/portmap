@@ -1,138 +1,109 @@
-# portmap
- 
-# Installation
+## portmap
+
+## Installation
 ```
 go install -v github.com/rix4uni/portmap@latest
 ```
 
-# Usage
+## Download prebuilt binaries
 ```
-Usage of portmap:
-  -asn
-        Show ASN
-  -c int
-        Number of threads to use (default 8)
-  -exclude-ports string
-        Exclude ports (comma-separated)
-  -ip
-        Show IP address
-  -o string
-        Output file
-  -v    Prints current version
+wget https://github.com/rix4uni/portmap/releases/download/v0.0.2/portmap-linux-amd64-0.0.2.tgz
+tar -xvzf portmap-linux-amd64-0.0.2.tgz
+rm -rf portmap-linux-amd64-0.0.2.tgz
+mv portmap ~/go/bin/portmap
 ```
+Or download [binary release](https://github.com/rix4uni/portmap/releases) for your platform.
 
-# Usage Example
-
-Single URL:
+## Compile from source
 ```
-echo "104.18.36.214" | portmap
-104.18.36.214:8080
-104.18.36.214:2082
-104.18.36.214:2083
-104.18.36.214:2053
-104.18.36.214:2086
-104.18.36.214:2087
-104.18.36.214:80
-104.18.36.214:8880
-104.18.36.214:8443
-104.18.36.214:443
-
-echo "104.18.36.214" | portmap -c 100 -asn
-104.18.36.214:8080 AS13335
-104.18.36.214:2082 AS13335
-104.18.36.214:2083 AS13335
-104.18.36.214:2053 AS13335
-104.18.36.214:2086 AS13335
-104.18.36.214:2087 AS13335
-104.18.36.214:80 AS13335
-104.18.36.214:8880 AS13335
-104.18.36.214:8443 AS13335
-104.18.36.214:443 AS13335
-
-echo "104.18.36.214" | portmap -c 100 -ip
-104.18.36.214:8080  104.18.36.214
-104.18.36.214:2082  104.18.36.214
-104.18.36.214:2083  104.18.36.214
-104.18.36.214:2053  104.18.36.214
-104.18.36.214:2086  104.18.36.214
-104.18.36.214:2087  104.18.36.214
-104.18.36.214:80  104.18.36.214
-104.18.36.214:8880  104.18.36.214
-104.18.36.214:8443  104.18.36.214
-104.18.36.214:443  104.18.36.214
-
-echo "104.18.36.214" | portmap -c 100 -asn -ip
-104.18.36.214:8080 AS13335 104.18.36.214
-104.18.36.214:2082 AS13335 104.18.36.214
-104.18.36.214:2083 AS13335 104.18.36.214
-104.18.36.214:2053 AS13335 104.18.36.214
-104.18.36.214:2086 AS13335 104.18.36.214
-104.18.36.214:2087 AS13335 104.18.36.214
-104.18.36.214:80 AS13335 104.18.36.214
-104.18.36.214:8880 AS13335 104.18.36.214
-104.18.36.214:8443 AS13335 104.18.36.214
-104.18.36.214:443 AS13335 104.18.36.214
-
-## remove port 80,443
-echo "104.18.36.214" | portmap -c 100 -exclude-ports 80,443
-104.18.36.214:8080
-104.18.36.214:2082
-104.18.36.214:2083
-104.18.36.214:2053
-104.18.36.214:2086
-104.18.36.214:2087
-104.18.36.214:8880
-104.18.36.214:8443
-
-## save output in a file
-echo "104.18.36.214" | portmap -c 100 -exclude-ports 80,443 -o output.txt
-104.18.36.214:8080
-104.18.36.214:2082
-104.18.36.214:2083
-104.18.36.214:2053
-104.18.36.214:2086
-104.18.36.214:2087
-104.18.36.214:8880
-104.18.36.214:8443
+git clone --depth 1 github.com/rix4uni/portmap.git
+cd portmap; go install
 ```
 
-Multiple URLs:
+## Usage
 ```
-cat urls.txt | portmap -c 100
+                         __
+    ____   ____   _____ / /_ ____ ___   ____ _ ____
+   / __ \ / __ \ / ___// __// __  __ \ / __  // __ \
+  / /_/ // /_/ // /   / /_ / / / / / // /_/ // /_/ /
+ / .___/ \____//_/    \__//_/ /_/ /_/ \__,_// .___/
+/_/                                        /_/
+                    Current portmap version v0.0.2
+
+A longer description that spans multiple lines and likely contains
+examples and usage of using your application. For example:
+
+Cobra is a CLI library for Go that empowers applications.
+This application is a tool to generate the needed files
+to quickly create a Cobra application.
+
+Usage:
+  portmap [flags]
+  portmap [command]
+
+Available Commands:
+  apishodan   A brief description of your command uses https://api.shodan.io/shodan/host/
+  completion  Generate the autocompletion script for the specified shell
+  help        Help about any command
+  internetdb  A brief description of your command uses https://internetdb.shodan.io/
+
+Flags:
+  -h, --help      help for portmap
+  -v, --version   Print the version of the tool and exit.
 ```
-subs.txt contains:
+
+## Usage Example
+
+Single IP:
 ```
+# Basic Usage
+▶ echo "147.249.56.149" | portmap internetdb
+147.249.56.149:443
+147.249.56.149:8080
+147.249.56.149:8843
+
+# Advanced Usage
+▶ echo "147.249.56.149" | portmap apishodan
+147.249.56.149:8000 [ASAS6419] [Fidelity National Information Services, Inc.]
+147.249.56.149:8080 [ASAS6419] [Fidelity National Information Services, Inc.]
+147.249.56.149:443 [ASAS6419] [Fidelity National Information Services, Inc.]
+147.249.56.149:8843 [ASAS6419] [Fidelity National Information Services, Inc.]
+147.249.56.149:8443 [ASAS6419] [Fidelity National Information Services, Inc.]
+
+# CIDR range
+▶ echo "1.2.3.4/24" | portmap apishodan
+1.2.3.4:80
+1.2.3.5:80
+
+# Get JSON response
+▶ echo "147.249.56.149" | portmap apishodan --json
+{
+  "ip_str": "147.249.56.149",
+  "ports": [
+    8000,
+    8080,
+    443,
+    8843,
+    8443
+  ],
+  "asn": "AS6419",
+  "org": "Fidelity National Information Services, Inc.",
+  "domains": [
+    "automatedfinancial.com"
+  ]
+}
+```
+
+Multiple IPs:
+```
+▶ cat ips.txt
 104.18.36.214
 104.18.39.102
+147.249.56.149
+1.2.3.4/24
 ```
 
-Output:
 ```
-104.18.36.214:8080
-104.18.36.214:2082
-104.18.36.214:2083
-104.18.36.214:2053
-104.18.36.214:2086
-104.18.36.214:2087
-104.18.36.214:80
-104.18.36.214:8880
-104.18.36.214:8443
-104.18.36.214:443
-104.18.39.102:2096
-104.18.39.102:2082
-104.18.39.102:2083
-104.18.39.102:2053
-104.18.39.102:2086
-104.18.39.102:2087
-104.18.39.102:2095
-104.18.39.102:80
-104.18.39.102:8880
-104.18.39.102:8080
-104.18.39.102:8443
-104.18.39.102:443
-```
-
-curl oneliner
-```
-curl -s "https://api.shodan.io/shodan/host/106.11.35.30" | jq '{domains: .domains, hostnames: .hostnames, vulns: .vulns, asn: .asn, ip: .ip_str, "ip_ports": [.ports[] as $p | "\(.ip_str):\($p)"]}'
+▶ cat ips.txt | portmap apishodan
+▶ cat ips.txt | portmap internetdb
 ```
