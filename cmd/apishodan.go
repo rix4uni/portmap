@@ -84,7 +84,9 @@ func apishodanprocessInput(input io.Reader, apishodanjsonFlag bool) {
 			for _, ipAddr := range ips {
 				data, err := apishodanfetchShodanData(ipAddr)
 				if err != nil {
-					fmt.Fprintf(os.Stderr, "Error fetching data for IP %s: %v\n", ipAddr, err)
+					if apishodanverboseFlag {
+						fmt.Fprintf(os.Stderr, "Error fetching data for IP %s: %v\n", ipAddr, err)
+					}
 					continue
 				}
 
@@ -98,7 +100,9 @@ func apishodanprocessInput(input io.Reader, apishodanjsonFlag bool) {
 			// Process a single IP
 			data, err := apishodanfetchShodanData(ip)
 			if err != nil {
-				fmt.Fprintf(os.Stderr, "Error fetching data for IP %s: %v\n", ip, err)
+				if apishodanverboseFlag {
+					fmt.Fprintf(os.Stderr, "Error fetching data for IP %s: %v\n", ip, err)
+				}
 				continue
 			}
 
@@ -146,9 +150,11 @@ Examples:
 }
 
 var apishodanjsonFlag bool
+var apishodanverboseFlag bool
 
 func init() {
 	rootCmd.AddCommand(apishodanCmd)
 
 	apishodanCmd.Flags().BoolVar(&apishodanjsonFlag, "json", false, "Output in JSON format")
+	apishodanCmd.Flags().BoolVar(&apishodanverboseFlag, "verbose", false, "enable verbose mode")
 }

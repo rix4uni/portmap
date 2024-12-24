@@ -82,7 +82,9 @@ func processInput(input io.Reader, jsonFlag bool) {
 			for _, ipAddr := range ips {
 				data, err := fetchShodanData(ipAddr)
 				if err != nil {
-					fmt.Fprintf(os.Stderr, "Error fetching data for IP %s: %v\n", ipAddr, err)
+					if verboseFlag {
+						fmt.Fprintf(os.Stderr, "Error fetching data for IP %s: %v\n", ipAddr, err)
+					}
 					continue
 				}
 
@@ -96,7 +98,9 @@ func processInput(input io.Reader, jsonFlag bool) {
 			// Process a single IP
 			data, err := fetchShodanData(ip)
 			if err != nil {
-				fmt.Fprintf(os.Stderr, "Error fetching data for IP %s: %v\n", ip, err)
+				if verboseFlag {
+					fmt.Fprintf(os.Stderr, "Error fetching data for IP %s: %v\n", ip, err)
+				}
 				continue
 			}
 
@@ -144,9 +148,11 @@ Examples:
 }
 
 var jsonFlag bool
+var verboseFlag bool
 
 func init() {
 	rootCmd.AddCommand(internetdbCmd)
 
 	internetdbCmd.Flags().BoolVar(&jsonFlag, "json", false, "Output in JSON format")
+	internetdbCmd.Flags().BoolVar(&verboseFlag, "verbose", false, "enable verbose mode")
 }

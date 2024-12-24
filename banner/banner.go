@@ -5,7 +5,7 @@ import (
 )
 
 // prints the version message
-const version = "v0.0.2"
+const version = "v0.0.3"
 
 func PrintVersion() {
 	fmt.Printf("Current portmap version %s\n", version)
@@ -20,5 +20,5 @@ func PrintBanner() {
   / /_/ // /_/ // /   / /_ / / / / / // /_/ // /_/ /
  / .___/ \____//_/    \__//_/ /_/ /_/ \__,_// .___/ 
 /_/                                        /_/`
-	fmt.Printf("%s\n%50s\n\n", banner, "Current portmap version "+version)
+	fmt.Printf("%s\n%55s\n\n", banner, "Current portmap version "+version)
 }
