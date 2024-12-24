@@ -1,5 +1,7 @@
 ## portmap
 
+portmap is a fast portscan tool, uses shodan public data for port scan used internetdb.shodan.io and api.shodan.io/shodan/host
+
 ## Installation
 ```
 go install -v github.com/rix4uni/portmap@latest
