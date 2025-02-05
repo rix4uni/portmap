@@ -9,9 +9,9 @@ go install -v github.com/rix4uni/portmap@latest
 
 ## Download prebuilt binaries
 ```
-wget https://github.com/rix4uni/portmap/releases/download/v0.0.2/portmap-linux-amd64-0.0.2.tgz
-tar -xvzf portmap-linux-amd64-0.0.2.tgz
-rm -rf portmap-linux-amd64-0.0.2.tgz
+wget https://github.com/rix4uni/portmap/releases/download/v0.0.3/portmap-linux-amd64-0.0.3.tgz
+tar -xvzf portmap-linux-amd64-0.0.3.tgz
+rm -rf portmap-linux-amd64-0.0.3.tgz
 mv portmap ~/go/bin/portmap
 ```
 Or download [binary release](https://github.com/rix4uni/portmap/releases) for your platform.
@@ -30,7 +30,7 @@ cd portmap; go install
   / /_/ // /_/ // /   / /_ / / / / / // /_/ // /_/ /
  / .___/ \____//_/    \__//_/ /_/ /_/ \__,_// .___/
 /_/                                        /_/
-                    Current portmap version v0.0.2
+                    Current portmap version v0.0.3
 
 A longer description that spans multiple lines and likely contains
 examples and usage of using your application. For example:
