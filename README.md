@@ -23,7 +23,7 @@ cd portmap; go install
 ```
 
 ## Usage
-```
+```yaml
                          __
     ____   ____   _____ / /_ ____ ___   ____ _ ____
    / __ \ / __ \ / ___// __// __  __ \ / __  // __ \
@@ -57,7 +57,7 @@ Flags:
 ## Usage Example
 
 Single IP:
-```
+```yaml
 # Basic Usage
 ▶ echo "147.249.56.149" | portmap internetdb
 147.249.56.149:443
@@ -97,7 +97,7 @@ Single IP:
 ```
 
 Multiple IPs:
-```
+```yaml
 ▶ cat ips.txt
 104.18.36.214
 104.18.39.102
@@ -105,7 +105,7 @@ Multiple IPs:
 1.2.3.4/24
 ```
 
-```
+```yaml
 ▶ cat ips.txt | portmap apishodan
 ▶ cat ips.txt | portmap internetdb
 ```
